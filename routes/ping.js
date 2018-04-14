@@ -1,4 +1,4 @@
-/*
+/**
  * Routes responsible for maintaining database information via pings.
  */
 

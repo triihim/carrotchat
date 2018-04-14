@@ -1,4 +1,4 @@
-/*
+/**
  * Routes for utility functionality.
  */
 
@@ -9,7 +9,6 @@ router.get('/generateuser', (req, res) => {
         if(result === null || result === 'ERROR') {
             res.end('ERROR');
         } else {
-            console.log(result);
             res.end(result.toString());
         }
     }).catch((err) => console.log(err));

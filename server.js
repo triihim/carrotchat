@@ -1,18 +1,14 @@
 const express = require('express');
-const pingRouter = require('./routes/ping');
-const utilsRouter = require('./routes/utils');
 
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static('/public'));
 
-app.get('/', (req, res) => {
-    res.render('entrance');
-});
-
-app.use('/ping', pingRouter);
-app.use('/utils', utilsRouter);
+app.use('/', require('./routes/root'));
+app.use('/ping', require('./routes/ping'));
+app.use('/utils', require('./routes/utils'));
+app.use('/*', require('./routes/catchall'));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
