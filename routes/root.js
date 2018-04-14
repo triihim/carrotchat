@@ -5,7 +5,9 @@
 const router = require('express').Router();
 
 router.get(['/', '/entrance'], (req, res) => {
-    res.render('entrance');
+    res.render('entrance', {
+        title: 'Entrance'
+    });
 });
 
 router.get('/lobby', (req, res) => {
