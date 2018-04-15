@@ -4,6 +4,7 @@
 
 const MongoClient = require('mongodb').MongoClient;
 const MONGO_URL = require('../config').MONGO_URL;
+const dbName = require('../config').db;
 
 const randomUsername = () => {
     let number = Math.floor(Math.random()*101);
@@ -24,7 +25,7 @@ const isUniqueUsername = (username) => {
             if(err) {
                 console.log('Error occurred ' + err);
             } else {
-                let dbo = db.db('carrot');
+                let dbo = db.db(dbName);
                 dbo.collection('users').find({ username: username }).limit(1).toArray((err, result)=>{
                     if(err) {
                         console.log('Error occurred ' + err);
@@ -47,6 +48,20 @@ module.exports.generateUsername = async (callback) => {
     if(unique === false) {
         this.generateUsername(callback);
     } else {
+
+        MongoClient.connect(MONGO_URL, (err, db) => {
+            if(err) {
+                console.log('Error occurred ' + err);
+            } else {
+                let dbo = db.db(dbName);
+                dbo.collection('users').insert({
+                    username: username,
+                    lastPing: new Date().getTime()
+                })
+            }
+            db.close();
+        });
+
         callback(username);
     }
 };

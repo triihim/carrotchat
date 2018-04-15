@@ -5,9 +5,10 @@
 const router = require('express').Router();
 
 router.get('/user/:username', (req, res) => {
-    console.log('Ping from: ' + req.params.username);
-    // Check that username exists in db.
-    res.end('1');
+    require('../functions/pings')
+    .userPingValidation(req.params.username, (success) => {
+        (success) ? res.end('1') : res.end('0');
+    });
 });
 
 router.get('/chat/:id', (req, res) => {

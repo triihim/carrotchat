@@ -23,7 +23,8 @@ h1, h2, h3, h4, h5, h6, p, button, .page-loader, nav ul li a
 
 html { font-size: 16px; }
 body { color: #e6e7e8; background-color: #2c2c2c; min-width: 360px; }
-body, nav, nav ul, #username, .chatbox h3 { margin: 0; padding: 0; }
+body, nav, nav ul, #username, .chatbox h3, #control-error
+{ margin: 0; padding: 0; }
 
 .btn, .container, .chatbox { border-radius: 5px; }
 
@@ -125,6 +126,11 @@ nav ul li a:hover {
 #controls button:hover {
     cursor: pointer;
     background-color: #7edb72;
+}
+#control-error {
+    color: #f15a5a;
+    font-weight: bold;
+    display: none;
 }
 
 .chatbox {

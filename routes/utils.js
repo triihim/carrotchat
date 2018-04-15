@@ -15,7 +15,13 @@ router.get('/generateuser', (req, res) => {
 });
 
 router.post('/createchat', (req, res) => {
-
+    require('../functions/createchat').createChat(req.body, (result, chatId) => {
+        if(result === '1') {
+            if(chatId !== null) res.end(chatId.toString());
+        } else {
+            res.end('0');
+        };
+    });
 });
 
 module.exports = router;

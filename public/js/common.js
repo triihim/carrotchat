@@ -2,9 +2,6 @@
 var hostUrl = 'http://localhost:3000';
 var pingInterval = 5000; // ms.
 
-// TESTING
-sessionStorage.setItem('username', 'marko');
-
 if(sessionStorage.getItem('username')) {
 
     let username = sessionStorage.getItem('username');
