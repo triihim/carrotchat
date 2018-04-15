@@ -132,17 +132,24 @@ nav ul li a:hover {
     font-weight: bold;
     display: none;
 }
-
 .chatbox {
     background-color: gray;
     padding: 10px;
     margin-bottom: 15px;
+    transition-duration: .2s;
+}
+.chatbox h3 {
+    color: orange;
+}
+.chatbox p {
+    margin: 0; padding: 5px 0;
+}
+.chatbox:hover {
+    cursor: pointer;
+    background-color: rgb(148, 148, 148);
 }
 
 /* Chat page */
-#chat-view {
-
-}
 #chat-view .topic {
     color: #f7931d;
     margin: 0; padding: 0;
@@ -184,4 +191,23 @@ nav ul li a:hover {
 #chat-view #typing-area button:hover {
     cursor: pointer;
     background-color: #7edb72;
+}
+
+#message-area .message {
+    padding: 5px 10px;
+}
+#message-area .message p, #message-area h5 {
+    margin: 0; padding: 0;
+    font-size: .9rem;
+}
+#message-area h5 {
+    color: #71c066;
+    font-weight: normal;
+}
+#message-area .message p {
+    color: #2c2c2c;
+}
+#message-area h5 span {
+    color: gray;
+    font-size: .8rem;
 }

@@ -1,5 +1,38 @@
+function fetchChats(callback) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            callback(JSON.parse(this.responseText));
+        }
+    }
+    xhttp.open("GET", hostUrl + '/chat/fetch', true);
+    xhttp.send(); 
+};
+
+function renderChats(chats) {
+    let container = document.querySelector('#chats');
+    chats.forEach(chat => {
+        let chatbox = document.createElement('div');
+        chatbox.className = 'chatbox';
+        chatbox.dataset.id = chat._id;
+        chatbox.addEventListener('click', () => {
+            location.replace(hostUrl + '/chat/' + chat._id + '/' + sessionStorage.getItem('username'));
+        });
+        let topic = document.createElement('h3');
+        topic.innerHTML = chat.topic;
+        let created = document.createElement('p');
+        created.innerHTML = chat.creationDate;
+        chatbox.appendChild(topic);
+        chatbox.appendChild(created);
+        container.appendChild(chatbox);
+    });
+};
+
 userPing(sessionStorage.getItem('username'), function() {
-    showPage(true);
+    fetchChats((chats) => {
+        renderChats(chats);
+        showPage(true);
+    });
 });
 
 function validateTopic(topic) {

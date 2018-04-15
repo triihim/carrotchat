@@ -5,6 +5,7 @@
 const validateUser = require('../functions/validation').validateUser;
 const router = require('express').Router();
 const fetchChatData = require('../functions/fetchChatData').fetchChatData;
+const fetchAllChats = require('../functions/fetchChatData').fetchAllChats;
 
 router.get('/:chatId/:username', (req, res) => {
     let chatId = req.params.chatId;
@@ -18,6 +19,12 @@ router.get('/:chatId/:username', (req, res) => {
         } else {
             res.redirect('/');
         }
+    });
+});
+
+router.get('/fetch', (req, res) => {
+    fetchAllChats((chats) => {
+        res.end(JSON.stringify(chats));
     });
 });
 

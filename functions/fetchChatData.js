@@ -23,3 +23,24 @@ module.exports.fetchChatData = (chatId, callback) => {
         };
     })
 };
+
+module.exports.fetchAllChats = (callback) => {
+    MongoClient.connect(MONGO_URL, (err, db) => {
+        if(err) {
+            console.log('Error occurred ' + err);
+        } else {
+            let dbo = db.db(dbName);
+            dbo.collection('chats').find(
+                {},
+                {fields: { messages: 0 }}
+            ).toArray((err, result) => {
+                if(err) {
+                    console.log('Error occurred when fetching all chats ' + err);
+                } else {
+                    callback(result);
+                };
+            })
+            db.close();
+        };
+    });
+};
