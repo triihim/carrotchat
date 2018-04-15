@@ -43,6 +43,12 @@ function showPage(show) {
     let loader = document.querySelector('.page-loader');
     let content = document.querySelector('.page-content');
 
+    if(document.querySelector('#username')) {
+        if(sessionStorage.getItem('username')) {
+            document.querySelector('#username').innerHTML = sessionStorage.getItem('username');
+        };
+    };
+
     if(show === true) {
         loader.style.display = 'none';
         content.style.display = 'block';

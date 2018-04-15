@@ -18,23 +18,45 @@
 .bg-light   { background-color: #e6e7e8; }
 
 /* General styles */
-h1, h2, h3, h4, h5, h6, p, button, .page-loader { font-family: 'Varela Round', sans-serif; color: #e6e7e8; }
+h1, h2, h3, h4, h5, h6, p, button, .page-loader, nav ul li a 
+{ font-family: 'Varela Round', sans-serif; color: #e6e7e8; }
+
 html { font-size: 16px; }
-body { color: #e6e7e8; background-color: #2c2c2c; width: 90%; margin: auto; }
+body { color: #e6e7e8; background-color: #2c2c2c; min-width: 360px; }
+body, nav, nav ul, #username, .chatbox h3 { margin: 0; padding: 0; }
 
-.btn { border-radius: 5px; }
+.btn, .container, .chatbox { border-radius: 5px; }
 
-.page-loader { display: block; font-size: 2.5rem; padding: 20px; font-weight: bold; }
+.page-loader { display: block; font-size: 2.5rem; padding: 15px; font-weight: bold; }
 .page-content { display: none; }
 
+nav ul { list-style: none; text-align: center; padding-top: 10px; }
+nav ul li {
+    display: inline-block;
+    padding: 5px;
+}
+nav ul li a { 
+    text-decoration: none; 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    padding: 5px;
+    transition-duration: .2s;
+}
+nav ul li a:hover {
+    color: #404041;
+}
+#username { font-size: 1.3rem; padding-bottom: 5px; }
+
+.container {
+    background-color: #404041;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+}
+
 /* Utility classes */
-.center-block {
-    display: block;
-    margin: auto;
-}
-.center-text {
-    text-align: center;
-}
+.center-block { display: block; margin: auto; }
+.center-text { text-align: center; }
 .mt-1 { margin-top: 1rem; }
 .mt-2 { margin-top: 2rem; }
 .btn {
@@ -53,7 +75,7 @@ body { color: #e6e7e8; background-color: #2c2c2c; width: 90%; margin: auto; }
 }
 .btn-calltoaction:hover {
     padding: 20px 40px;
-    background-color: #7edb72;;
+    background-color: #7edb72;
 }
 
 /* Animations */
@@ -81,6 +103,33 @@ body { color: #e6e7e8; background-color: #2c2c2c; width: 90%; margin: auto; }
 }
 
 /* Lobby */
+#controls { line-height: 30px; margin: auto; }
+#controls input { border-radius: 5px 0 0 5px; width: 80%; }
+#controls button, #controls input {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: none; outline: none;
+    margin: 0; padding: 5px 10px;
+    vertical-align: middle;
+    height: 30px;
+    font-size: 1rem;
+}
+#controls button {
+    padding: 5px 15px;
+    font-weight: bold;
+    border-radius: 0 5px 5px 0;
+    width: 20%;
+    transition-duration: .2s;
+}
+#controls button:hover {
+    cursor: pointer;
+    background-color: #7edb72;
+}
 
-
+.chatbox {
+    background-color: gray;
+    padding: 10px;
+    margin-bottom: 15px;
+}
 

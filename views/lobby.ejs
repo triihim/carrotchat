@@ -3,12 +3,31 @@
 <%- include partials/head.ejs %>
 <body>
     
-    <h1 class='page-loader'>Loading...</h1>
+    <h1 class="page-loader">Loading...</h1>
 
-    <div class='page-content'>
+    <div class="page-content">
         <%- include partials/nav.ejs %>
 
-        This is lobby
+        <div class="container">
+            <div id="controls">
+                <input type="text" placeholder="New topic"
+                ><button class="bg-green">OK</button>
+            </div>
+
+            <div id="chats" class="mt-1">
+                
+                <div class="chatbox">
+                    <h3>Topic</h3>
+                </div>
+
+                <div class="chatbox">
+                    <h3>Topic</h3>
+                </div>
+
+            </div>
+
+        </div>
+        
     </div>
 
     <script src="js/common.js"></script>
