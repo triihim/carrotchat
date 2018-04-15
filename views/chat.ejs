@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include partials/head.ejs %>
+<body>
+    
+    <h1 class="page-loader">Loading...</h1>
+
+    <div class="page-content">
+        <%- include partials/nav.ejs %>
+
+        <div class="container">
+            <div id="chat-view" data-id=<%- id %>>
+                <h3 class="topic">Topic</h3>
+                <h4 class="creation">created</h4>
+                <h4 class="chatters">chatters</h4>
+                <div id="message-area">
+                    text
+                </div>
+                <div id="typing-area">
+                    <input type="text">
+                    <button>Send</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/chat.js"></script>
+</body>
+</html>

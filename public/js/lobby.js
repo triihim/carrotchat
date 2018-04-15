@@ -50,7 +50,7 @@ document.querySelector('#okBtn').addEventListener('click', () => {
         createChat(topic, function(result, chatId) {
             if(result === true) {
                 isCreating(false);
-                location.replace(hostUrl + '/chat/' + chatId + sessionStorage.getItem('username'));
+                location.replace(hostUrl + '/chat/' + chatId + '/' + sessionStorage.getItem('username'));
             } else {
                 isCreating(false);
                 console.log('Chatin luonti epäonnistui');
