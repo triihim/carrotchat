@@ -11,7 +11,9 @@ router.get(['/', '/entrance'], (req, res) => {
 });
 
 router.get('/lobby', (req, res) => {
-    res.end('LOBBY')
+    res.render('lobby', {
+        title: 'Lobby'
+    });
 });
 
 router.get('/about', (req, res) => {
