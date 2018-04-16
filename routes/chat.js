@@ -33,7 +33,7 @@ router.post('/msg', (req, res) => {
     let data = req.body;
     require('../functions/message').saveMsg(data, (success) => {
         (success) ? res.end('Message saved') : res.end('Message saving failed');
-    })
+    });
 });
 
 router.get('/join/:chatId/:username', (req, res) => {

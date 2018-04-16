@@ -78,13 +78,28 @@ function renderChat(chatData) {
     showPage(true);
 };
 
+function isSending(sending) {
+    let sendBtn = document.querySelector('.sendBtn');
+    let msgInput = document.querySelector('.msgInput');
+    if(sending) {
+        sendBtn.disabled = true;
+        sendBtn.innerHTML = 'Sending...';
+        msgInput.disabled = true;
+    } else {
+        sendBtn.disabled = false;
+        sendBtn.innerHTML = 'Send';
+        msgInput.disabled = false;
+        msgInput.value = '';
+    };
+};
+
 function sendMessage(msg, callback) {
     let chatId = document.querySelector('#chat-view').dataset.id;
     let sender = sessionStorage.getItem('username');
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
+            if(this.responseText === '0') console.log('Sending msg failed');
             callback()
         };
     };
@@ -116,8 +131,9 @@ let msgInput = document.querySelector('.msgInput');
 sendBtn.addEventListener('click', function() {
     let msg = msgInput.value;
     if(msg.length > 0 && msg.length <= 100) {
+        isSending(true);
         sendMessage(msg, () => {
-            console.log('THIS IS SEND MESSAGE CALLBACK');
+            isSending(false);
         });
     }
 });

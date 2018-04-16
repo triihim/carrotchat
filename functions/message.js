@@ -7,6 +7,7 @@ const MONGO_URL = require('../config').MONGO_URL;
 const dbName = require('../config').db;
 const ObjectId = require('mongodb').ObjectId;
 
+
 module.exports.saveMsg = (data, callback) => {
     MongoClient.connect(MONGO_URL, (err, db) => {
         if(err) {
