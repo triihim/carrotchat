@@ -211,3 +211,6 @@ nav ul li a:hover {
     color: gray;
     font-size: .8rem;
 }
+
+/* Temporarily hidden */
+.chatters { display: none };

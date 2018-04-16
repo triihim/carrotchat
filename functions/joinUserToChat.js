@@ -6,8 +6,7 @@ const ObjectId = require('mongodb').ObjectId;
 module.exports.joinUserToChat = (chatId, username, callback) => {
     MongoClient.connect(MONGO_URL, (err, db) => {
         if(err) {
-            // Handle error.
-            console.error('DB connection failed');
+            console.error('DB connection failed ' + err);
         } else {
             let dbo = db.db(dbName);
             let chatterRecord = { username: username, lastPing: new Date().getTime() }; 

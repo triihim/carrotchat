@@ -105,7 +105,7 @@ function sendMessage(msg, callback) {
     };
     xhttp.open('POST', hostUrl + '/chat/msg', true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhttp.send('chatId=' + chatId + '&sender=' + sender + '&msg=' + msg);
+    xhttp.send('chatId=' + chatId + '&sender=' + sender + '&message=' + msg);
 };
 
 joinChat(
@@ -137,3 +137,17 @@ sendBtn.addEventListener('click', function() {
         });
     }
 });
+
+let socket = io.connect(hostUrl);
+
+socket.on('new message', function(data) {
+    document.querySelector('#message-area')
+    .appendChild(createMessage(data));
+});
+
+// socket.on('new chatter', function() {
+//     let chattersField = document.querySelector('.chatters');
+//     let text = chattersField.innerHTML;
+//     let count = parseInt(text.split(' ')[1]) + 1;
+//     chattersField.innerHTML = 'Chatters: ' + count;
+// });

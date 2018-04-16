@@ -18,7 +18,7 @@ module.exports.saveMsg = (data, callback) => {
             let msgRecord = {
                 sender: data.sender,
                 sendDate: new Date().toGMTString(),
-                message: data.msg
+                message: data.message
             };
 
             dbo.collection('chats').update(
@@ -29,7 +29,7 @@ module.exports.saveMsg = (data, callback) => {
                         console.log('Chat saving error: ' + err);
                         callback(false);
                     } else {
-                        callback(true);
+                        callback(true, msgRecord);
                     }
                 }
             );
@@ -37,9 +37,3 @@ module.exports.saveMsg = (data, callback) => {
         };
     });
 };
-
-// { 
-//     chatId: '5ad4ab0674943c2ff8da6be0',
-//     sender: 'angry-apple90',
-//     msg: 'moro' 
-// }

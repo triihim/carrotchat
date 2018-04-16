@@ -17,7 +17,7 @@ app.use(require('body-parser').urlencoded({ extended: false }));
 app.use('/', require('./routes/root'));
 app.use('/ping', require('./routes/ping'));
 app.use('/utils', require('./routes/utils'));
-app.use('/chat', require('./routes/chat'));
+app.use('/chat', require('./routes/chat')(io));
 app.use('/*', require('./routes/catchall'));
 
 setInterval(() => { 
