@@ -9,6 +9,9 @@ router.get('/generateuser', (req, res) => {
         if(result === null || result === 'ERROR') {
             res.end('ERROR');
         } else {
+            require('../functions/statistics').record(
+                require('../functions/statistics').TYPE.TOTAL_GENERATED
+            );
             res.end(result.toString());
         }
     }).catch((err) => console.log(err));

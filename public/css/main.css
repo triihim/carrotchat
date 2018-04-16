@@ -212,5 +212,35 @@ nav ul li a:hover {
     font-size: .8rem;
 }
 
+/* Statistics page */
+#statistics {
+    padding: 10px 0;
+    text-align: center;
+}
+.record {
+    padding: 10px 0;
+}
+.record span {
+    display: block;
+    font-size: 3rem;
+}
+
+/* About page */
+#about {
+    text-align: center;
+    margin-top: 20px;
+}
+#about img {
+    height: 100px;
+    transform: rotate(40deg);
+}
+#about h1 {
+    vertical-align: middle;
+}
+#about p {
+    padding: 20px;
+    line-height: 1.5rem;
+}
+
 /* Temporarily hidden */
 .chatters { display: none };

@@ -17,11 +17,18 @@ router.get('/lobby', (req, res) => {
 });
 
 router.get('/about', (req, res) => {
-    res.end('ABOUT');
+    res.render('about', {
+        title: 'About'
+    });
 });
 
 router.get('/statistics', (req, res) => {
-    res.end('STATISTICS');
+    require('../functions/statistics').fetchStatistics((result) => {
+        res.render('statistics', {
+            title: 'Statistics',
+            usersGenerated: result.usernamesGenerated
+        });
+    });
 });
 
 

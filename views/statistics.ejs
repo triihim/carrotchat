@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include partials/head.ejs %>
+<body>
+    
+    <h1 class="page-loader">Loading...</h1>
+
+    <div class="page-content">
+        <%- include partials/nav.ejs %>
+
+        <div class="container">
+            
+            <div id="statistics">
+
+                <h2 class="record">
+                    <span><%- usersGenerated %></span>
+                    Total usernames generated
+                </h2>
+
+            </div>
+
+        </div>
+        
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/statistics.js"></script>
+</body>
+</html>
