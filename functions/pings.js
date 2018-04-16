@@ -35,9 +35,7 @@ module.exports.chatPingValidation = (chatId, username, callback) => {
         if(err) {
             console.log('Error occurred: ' + err);
         } else {
-            console.log('Chat ping by: ' + username);
             let dbo = db.db(dbName);
-            
             dbo.collection('chats').update(
                 { 
                     _id: ObjectId(chatId),

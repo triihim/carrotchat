@@ -23,7 +23,7 @@ module.exports.joinUserToChat = (chatId, username, callback) => {
                 { _id: ObjectId(chatId) },
                 { $addToSet: { chatters: chatterRecord } },
                 (err, result) => {
-                    console.log('CHAT JOINING RESULT:');
+                    if(err === null) callback(true);
                 }
             );
                 

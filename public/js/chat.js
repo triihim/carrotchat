@@ -15,7 +15,7 @@ function joinChat(chatId, username) {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
+            if(this.responseText === '0') location.reload(hostUrl + '/lobby');
         };
     };
     xhttp.open('GET', hostUrl + '/chat/join/' + chatId + '/' + username, true);
@@ -26,7 +26,11 @@ function loadChatData(chatId, username, callback) {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
-            callback(JSON.parse(this.responseText));
+            if(this.responseText.length > 0) {
+                callback(JSON.parse(this.responseText));
+            } else {
+                location.replace(hostUrl + '/lobby');
+            };
         }
     };
     xhttp.open("GET", hostUrl + '/chat/fetch/' + chatId + '/' + username, true);
@@ -43,7 +47,7 @@ function createMessage(msg) {
     let sender = document.createElement('h5');
     sender.innerHTML = msg.sender + ': ';
     let dateTime = document.createElement('span');
-    dateTime.innerHTML = msg.dateTime;
+    dateTime.innerHTML = msg.sendDate;
     sender.appendChild(dateTime);
 
     // Message.
@@ -74,6 +78,21 @@ function renderChat(chatData) {
     showPage(true);
 };
 
+function sendMessage(msg, callback) {
+    let chatId = document.querySelector('#chat-view').dataset.id;
+    let sender = sessionStorage.getItem('username');
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            callback()
+        };
+    };
+    xhttp.open('POST', hostUrl + '/chat/msg', true);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send('chatId=' + chatId + '&sender=' + sender + '&msg=' + msg);
+};
+
 joinChat(
     document.querySelector('#chat-view').dataset.id,
     sessionStorage.getItem('username')
@@ -92,3 +111,13 @@ setInterval(() => {
     )
 }, pingInterval)
 
+let sendBtn = document.querySelector('.sendBtn');
+let msgInput = document.querySelector('.msgInput');
+sendBtn.addEventListener('click', function() {
+    let msg = msgInput.value;
+    if(msg.length > 0 && msg.length <= 100) {
+        sendMessage(msg, () => {
+            console.log('THIS IS SEND MESSAGE CALLBACK');
+        });
+    }
+});
