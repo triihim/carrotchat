@@ -41,17 +41,24 @@ module.exports.chatPingValidation = (chatId, username, callback) => {
             dbo.collection('chats').update(
                 { 
                     _id: ObjectId(chatId),
-                    'chatters.username': user
+                    'chatters.username': username
                 },
                 { 
                     $set: { 'chatters.$.lastPing': new Date().getTime() } 
                 },
                 (err, result) => {
-                    console.log('CHAT PING:');
-                    console.log(result.result);
+                    if(err) {
+                        console.log('Ping error occurred: ' + err);
+                        callback(false);
+                    } else {
+                        if(result.result.nModified > 0) {
+                            callback(true);
+                        } else {
+                            callback(false);
+                        }
+                    };
                 }
-            )
-
+            );
             db.close();
         };
     });

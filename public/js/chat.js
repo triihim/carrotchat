@@ -2,7 +2,9 @@ function pingToChat(chatId, username) {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
+            if(this.responseText === '0') {
+                location.reload(hostUrl);
+            };
         };
     };
     xhttp.open('GET', hostUrl + '/ping/chat/' + chatId + '/' + username, true);
@@ -83,4 +85,10 @@ loadChatData(
     renderChat
 );
 
+setInterval(() => {
+    pingToChat(
+        document.querySelector('#chat-view').dataset.id,
+        sessionStorage.getItem('username')
+    )
+}, pingInterval)
 
