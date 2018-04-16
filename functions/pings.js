@@ -5,6 +5,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const MONGO_URL = require('../config').MONGO_URL;
 const dbName = require('../config').db;
+const ObjectId = require('mongodb').ObjectId;
 
 module.exports.userPingValidation = (username, callback) => {
     MongoClient.connect(MONGO_URL, (err, db) => {
@@ -26,13 +27,32 @@ module.exports.userPingValidation = (username, callback) => {
         };
         db.close();
     });
-    // Check that user still exists.
-        // TRUE update ping value
-        // FALSE pass false to callback
 };
 
-const chatPingValidation = (username, chat, callback) => {
-    // Check that chat still exists.
-        // TRUE update users ping values in chat
-        // FALSE remove left users from the chat.
+module.exports.chatPingValidation = (chatId, username, callback) => {
+    let data = { username: username, lastPing: new Date().getTime() };
+    MongoClient.connect(MONGO_URL, (err, db) => {
+        if(err) {
+            console.log('Error occurred: ' + err);
+        } else {
+            console.log('Chat ping by: ' + username);
+            let dbo = db.db(dbName);
+            
+            dbo.collection('chats').update(
+                { 
+                    _id: ObjectId(chatId),
+                    'chatters.username': user
+                },
+                { 
+                    $set: { 'chatters.$.lastPing': new Date().getTime() } 
+                },
+                (err, result) => {
+                    console.log('CHAT PING:');
+                    console.log(result.result);
+                }
+            )
+
+            db.close();
+        };
+    });
 };

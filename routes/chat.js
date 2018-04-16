@@ -6,6 +6,7 @@ const validateUser = require('../functions/validation').validateUser;
 const router = require('express').Router();
 const fetchChatData = require('../functions/fetchChatData').fetchChatData;
 const fetchAllChats = require('../functions/fetchChatData').fetchAllChats;
+const joinUserToChat = require('../functions/joinUserToChat').joinUserToChat;
 
 router.get('/:chatId/:username', (req, res) => {
     let chatId = req.params.chatId;
@@ -25,6 +26,14 @@ router.get('/:chatId/:username', (req, res) => {
 router.get('/fetch', (req, res) => {
     fetchAllChats((chats) => {
         res.end(JSON.stringify(chats));
+    });
+});
+
+router.get('/join/:chatId/:username', (req, res) => {
+    let chatId = req.params.chatId;
+    let username = req.params.username;
+    joinUserToChat(chatId, username, (success) => {
+        (success) ? res.end('1') : res.end('0');
     });
 });
 

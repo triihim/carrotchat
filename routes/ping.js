@@ -11,8 +11,11 @@ router.get('/user/:username', (req, res) => {
     });
 });
 
-router.get('/chat/:id', (req, res) => {
-
+router.get('/chat/:id/:username', (req, res) => {
+    require('../functions/pings')
+    .chatPingValidation(req.params.id, req.params.username, (success) => {
+        (success) ? res.end('1') : res.end('0');
+    });
 });
 
 module.exports = router;

@@ -1,6 +1,24 @@
-// Join user to chat with ajax.
-// Load chat data with ajax 
-// -> after remove loader.
+function pingToChat(chatId, username) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+        };
+    };
+    xhttp.open('GET', hostUrl + '/ping/chat/' + chatId + '/' + username, true);
+    xhttp.send();
+};
+
+function joinChat(chatId, username) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+        };
+    };
+    xhttp.open('GET', hostUrl + '/chat/join/' + chatId + '/' + username, true);
+    xhttp.send();
+};
 
 function loadChatData(chatId, username, callback) {
     let xhttp = new XMLHttpRequest();
@@ -54,8 +72,15 @@ function renderChat(chatData) {
     showPage(true);
 };
 
+joinChat(
+    document.querySelector('#chat-view').dataset.id,
+    sessionStorage.getItem('username')
+);
+
 loadChatData(
     document.querySelector('#chat-view').dataset.id,
     sessionStorage.getItem('username'),
     renderChat
 );
+
+
