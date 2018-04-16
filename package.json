@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "SET NODE_ENV=development & node server.js",
-    "start": "SET NODE_ENV=production & node server.js"
+    "start": "NODE_ENV=production & node server.js"
   },
   "author": "Tatu Riihimäki & Ville Virtanen",
   "license": "ISC",

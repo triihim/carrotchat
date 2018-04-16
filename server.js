@@ -1,5 +1,6 @@
 const express = require('express');
 const socket = require('socket.io');
+const ejs = require('ejs');
 
 const app = express();
 
