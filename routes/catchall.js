@@ -5,7 +5,10 @@
 const router = require('express').Router();
 
 router.get('/*', (req, res) => {
-    res.end('Page not found. Check the URL.');
+    res.render('error', {
+        title: 'Error',
+        message: 'Page not found'
+    })
 });
 
 module.exports = router;
