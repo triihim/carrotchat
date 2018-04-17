@@ -8,8 +8,8 @@ const dbName = require('../config').db;
 
 const randomUsername = () => {
     let number = Math.floor(Math.random()*101);
-    let adjectives = ["sexy","clumsy","grumpy","helpful","famous","fancy","handsome","clean","angry","adorable"];
-    let vegetables = ["satsuma","carrot","ginger","fig","fennel","lemon","melon","cherry","apple","avocado", "hillosipuli"];
+    let adjectives = require('./namepool').getAdjectives();
+    let vegetables = require('./namepool').getSubstantives();
 
     let randAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
     vegetables = vegetables.filter(word => word[0] === randAdjective[0]);
