@@ -11,6 +11,12 @@ function fetchChats(callback) {
 
 function renderChats(chats) {
     let container = document.querySelector('#chats');
+    if(chats.length < 1) {
+        let msg = document.createElement('h2');
+        msg.className = 'center-text';
+        msg.innerHTML = 'No chats exist at the moment :(<br />Start by creating one!';
+        container.appendChild(msg);
+    };
     chats.forEach(chat => {
         let chatbox = document.createElement('div');
         chatbox.className = 'chatbox';
