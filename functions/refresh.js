@@ -36,9 +36,9 @@ const refreshChats = () => {
             let dbo = db.db(dbName);
 
             // Remove empty chats.
-            dbo.collection('chats').remove(
-                { chatters: { $size: 0 } }
-            );
+            // dbo.collection('chats').remove(
+            //     { chatters: { $size: 0 } }
+            // );
 
             // Remove inactive users from chat.
             const threshold = require('../config').threshold;
