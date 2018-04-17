@@ -1,6 +1,6 @@
-const dbuser = process.env.DBUSER
-const dbpw = process.env.DBPW
-const db = process.env.DB
+const dbuser = process.env.DBUSER || require('./local-dev').dbuser;
+const dbpw = process.env.DBPW || require('./localDev').dbpw;
+const db = process.env.DB || require('./local-dev').db;
 module.exports.MONGO_URL = `mongodb://${dbuser}:${dbpw}@ds143388.mlab.com:43388/${db}`;
 module.exports.db = db;
 
