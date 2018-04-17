@@ -1,4 +1,4 @@
 # carrotchat
 Chat application built for school's web development -course
 
-Only tested on newest Chrome at the moment. Firefox apparently has some issues.
+Built and tested only on newest Chrome at the moment. Other browser have issues.
