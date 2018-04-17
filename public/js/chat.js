@@ -76,6 +76,8 @@ function renderChat(chatData) {
     });
 
     showPage(true);
+    scrollDown();
+    setFocusToInput();
 };
 
 function isSending(sending) {
@@ -108,6 +110,16 @@ function sendMessage(msg, callback) {
     xhttp.send('chatId=' + chatId + '&sender=' + sender + '&message=' + msg);
 };
 
+function scrollDown() {
+    let scroll = document.querySelector('#message-area');
+    scroll.scrollTop = scroll.scrollHeight;
+};
+
+function setFocusToInput() {
+    let input = document.querySelector('.msgInput');
+    input.focus();
+};
+
 joinChat(
     document.querySelector('#chat-view').dataset.id,
     sessionStorage.getItem('username')
@@ -134,6 +146,7 @@ sendBtn.addEventListener('click', function() {
         isSending(true);
         sendMessage(msg, () => {
             isSending(false);
+            setFocusToInput();
         });
     }
 });
@@ -143,6 +156,7 @@ let socket = io.connect(hostUrl);
 socket.on('new message', function(data) {
     document.querySelector('#message-area')
     .appendChild(createMessage(data));
+    scrollDown();
 });
 
 // socket.on('new chatter', function() {

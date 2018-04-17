@@ -20,7 +20,9 @@ module.exports.joinUserToChat = (chatId, username, callback) => {
             // Add user to chatters.
             dbo.collection('chats').update(
                 { _id: ObjectId(chatId) },
-                { $addToSet: { chatters: chatterRecord } },
+                { 
+                    $addToSet: { chatters: chatterRecord },
+                },
                 (err, result) => {
                     if(err === null) callback(true);
                 }

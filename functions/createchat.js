@@ -31,6 +31,8 @@ module.exports.createChat = (data, callback) => {
                     };
                 }
             );
+
+            
         }
         db.close();
     })

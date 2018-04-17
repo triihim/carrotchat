@@ -26,7 +26,8 @@ router.get('/statistics', (req, res) => {
     require('../functions/statistics').fetchStatistics((result) => {
         res.render('statistics', {
             title: 'Statistics',
-            usersGenerated: result.usernamesGenerated
+            usersGenerated: result.usernamesGenerated,
+            chatsGenerated: result.chatsGenerated
         });
     });
 });

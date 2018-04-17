@@ -1,6 +1,8 @@
 /**
  * Routes for utility functionality.
  */
+const record = require('../functions/statistics').record;
+const TYPE = require('../functions/statistics').TYPE;
 
 const router = require('express').Router();
 
@@ -9,9 +11,7 @@ router.get('/generateuser', (req, res) => {
         if(result === null || result === 'ERROR') {
             res.end('ERROR');
         } else {
-            require('../functions/statistics').record(
-                require('../functions/statistics').TYPE.TOTAL_GENERATED
-            );
+            record(TYPE.TOTAL_USERS_GENERATED);
             res.end(result.toString());
         }
     }).catch((err) => console.log(err));
@@ -20,7 +20,11 @@ router.get('/generateuser', (req, res) => {
 router.post('/createchat', (req, res) => {
     require('../functions/createchat').createChat(req.body, (result, chatId) => {
         if(result === '1') {
-            if(chatId !== null) res.end(chatId.toString());
+            if(chatId !== null) {
+                record(TYPE.TOTAL_CHATS_GENERATED);
+                res.end(chatId.toString())
+            };
+
         } else {
             res.end('0');
         };

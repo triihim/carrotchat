@@ -36,9 +36,21 @@ const refreshChats = () => {
             let dbo = db.db(dbName);
 
             // Remove empty chats.
-            // dbo.collection('chats').remove(
-            //     { chatters: { $size: 0 } }
-            // );
+            dbo.collection('chats').remove(
+                { chatters: { $size: 0 }, toBeDeleted: 1 }
+            );
+
+            // Flag chat to be removed next time around.
+            dbo.collection('chats').updateMany(
+                { chatters: { $size: 1 } },
+                { $set: { toBeDeleted: 1 } },
+            );
+
+            // Remove remove flag if chatters exist.
+            dbo.collection('chats').updateMany(
+                { 'chatters.0': { $exists: 1 } },
+                { $set: { toBeDeleted: 0 } }
+            );
 
             // Remove inactive users from chat.
             const threshold = require('../config').threshold;
