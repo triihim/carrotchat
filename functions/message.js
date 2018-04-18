@@ -18,7 +18,8 @@ module.exports.saveMsg = (data, callback) => {
             let msgRecord = {
                 sender: data.sender,
                 sendDate: new Date().toGMTString(),
-                message: data.message
+                message: data.message,
+                chatId: data.chatId
             };
 
             dbo.collection('chats').update(

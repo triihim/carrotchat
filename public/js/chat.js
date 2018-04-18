@@ -154,14 +154,11 @@ sendBtn.addEventListener('click', function() {
 let socket = io.connect(hostUrl);
 
 socket.on('new message', function(data) {
-    document.querySelector('#message-area')
-    .appendChild(createMessage(data));
-    scrollDown();
+    let chatId = document.querySelector('#chat-view').dataset.id;
+        if(data.chatId == chatId) {
+        document.querySelector('#message-area')
+        .appendChild(createMessage(data));
+        scrollDown();
+    };
 });
 
-// socket.on('new chatter', function() {
-//     let chattersField = document.querySelector('.chatters');
-//     let text = chattersField.innerHTML;
-//     let count = parseInt(text.split(' ')[1]) + 1;
-//     chattersField.innerHTML = 'Chatters: ' + count;
-// });
