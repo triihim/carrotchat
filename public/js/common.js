@@ -1,5 +1,5 @@
 // JS code shared with every page.
-var hostUrl = 'http://localhost:3000'; //'https://carrot-chat.herokuapp.com';
+var hostUrl = 'https://carrot-chat.herokuapp.com'; // 'http://localhost:3000';
 var pingInterval = 5000; // ms.
 
 if(sessionStorage.getItem('username')) {

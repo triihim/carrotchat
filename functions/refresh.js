@@ -58,7 +58,7 @@ const refreshChats = () => {
                 { 'chatters.lastPing': { $lt: (new Date().getTime() - threshold) }}
             );
 
-            db.close();
+            
         }
     });
 };
